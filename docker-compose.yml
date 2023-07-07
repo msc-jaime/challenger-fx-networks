@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  node_api_service:
+    container_name: node_api_service
+    build:  
+      context: ./node-api-service
+      dockerfile: ./Dockerfile
+    image: francescoxx/node_live_app
+    ports:
+      - "8080:3000"
+    environment:
+      - PG_DB=node_live_pg_db
+      - PG_USER=fxnetworks
+      - PG_PASSWORD=12345
+      - PG_HOST=node_pg_db
+    depends_on:
+      - node_pg_db
+
+  node_pg_db:
+    container_name: node_pg_db
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=node_live_pg_db
+      - POSTGRES_USER=fxnetworks
+      - POSTGRES_PASSWORD=12345
+    volumes:
+      - node_pg_db_data:/var/lib/postgresql/data
+
+volumes:
+  node_pg_db_data: {}
