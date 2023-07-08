@@ -19,7 +19,9 @@ app.get('/', (req, res, next) => {
   res.send('Hello World');
 });
 
+
 // CRUD routes
+app.use('/auths', require('./routes/auths'));
 app.use('/subsidiarias', require('./routes/subsidiarias'));
 app.use('/empleados', require('./routes/empleados'));
 

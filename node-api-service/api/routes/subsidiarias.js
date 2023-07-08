@@ -7,4 +7,5 @@ router.get('/:subsidiariaId', controller.getSubsidiaria);
 router.post('/', controller.createSubsidiaria); 
 router.put('/:subsidiariaId', controller.updateSubsidiaria); 
 router.delete('/:subsidiariaId', controller.deleteSubsidiaria); 
+
 module.exports = router;

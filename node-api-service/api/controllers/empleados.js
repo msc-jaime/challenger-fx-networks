@@ -1,6 +1,5 @@
 const Empleado = require('../models/empleado');
 
-
 exports.getEmpleados = (req, res, next) => {
   Empleado.findAll()
     .then(empleados => {
@@ -27,12 +26,14 @@ exports.createEmpleado = (req, res, next) => {
   const fechaContratacion = req.body.fechaContratacion;
   const puesto = req.body.puesto;
   const oficina = req.body.oficina;
+  const subsidiariaId = req.body.subsidiariaId;
   Empleado.create({
     nombre: nombre,
     cedula: cedula,
     fechaContratacion: fechaContratacion,
     puesto: puesto,
     oficina: oficina,
+    subsidiariaId: subsidiariaId
   })
     .then(result => {
       console.log('Created Empleado');
@@ -53,6 +54,7 @@ exports.updateEmpleado = (req, res, next) => {
   const updatedFechaContratacion = req.body.fechaContratacion;
   const updatedPuesto = req.body.puesto;
   const updatedOficina = req.body.oficina;
+  const subsidiariaId = req.body.subsidiariaId;
   Empleado.findByPk(empleadoId)
     .then(empleado => {
       if (!empleado) {
@@ -63,6 +65,7 @@ exports.updateEmpleado = (req, res, next) => {
       empleado.fechaContratacion = updatedFechaContratacion;
       empleado.puesto = updatedPuesto;
       empleado.oficina = updatedOficina;
+      empleado.subsidiariaId = subsidiariaId;
       return empleado.save();
     })
     .then(result => {
