@@ -1,13 +1,13 @@
 <div class="p-4">
     <div class="container">
-        <h1>Empleados</h1>
+        <h1>Subsidiarias</h1>
         <a routerLink="add" class="btn btn-sm btn-success mb-2">Adicionar Empleado</a>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th style="width: 30%">razonSocial</th>
-                    <th style="width: 30%">telefono</th>
-                    <th style="width: 30%">email</th>
+                    <th style="width: 30%">Razón Social</th>
+                    <th style="width: 30%">Telefono</th>
+                    <th style="width: 30%">Email</th>
                     <th style="width: 10%"></th>
                 </tr>
             </thead>
@@ -18,10 +18,10 @@
                     <td>{{subsidiary.email}}</td>
                     <td style="white-space: nowrap">
  
-                        <a routerLink="edit/{{subsidiary.id}}" class="btn btn-sm btn-primary me-1">Edit</a>
+                        <a routerLink="edit/{{subsidiary.id}}" class="btn btn-sm btn-primary me-1">Editar</a>
                         <button (click)="deleteEmployee(subsidiary.id)" class="btn btn-sm btn-danger" style="width: 58px" [disabled]="isDeleting">
                             <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
-                            <span *ngIf="!isDeleting">Delete</span>
+                            <span *ngIf="!isDeleting">Borrar</span>
                         </button>
                     </td>
                 </tr>

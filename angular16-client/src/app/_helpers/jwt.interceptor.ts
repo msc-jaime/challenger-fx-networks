@@ -9,9 +9,7 @@ export function jwtInterceptor(request: HttpRequest<any>, next: HttpHandlerFn) {
     const authService = inject(AuthService);
     const isLoggedIn = authService.authValue
     const isApiUrl = request.url.startsWith(environment.apiUrl2);
-    console.log(isLoggedIn);
     if (isLoggedIn && isApiUrl) {
-        console.log("Add Authorization");
         request = request.clone({
             setHeaders: { Authorization: `${isLoggedIn?.data?.accessToken}` }
         });

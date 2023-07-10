@@ -33,21 +33,21 @@ export class SubsidiaryService {
       )
   }
 
-  find(id: number): Observable<any> {
+  find(id: string): Observable<any> {
     return this.httpClient.get(`${environment.apiUrl2}/subsidiarias/${id}`)
       .pipe(
         catchError(this.errorHandler)
       )
   } 
 
-  update(id: number, employee: Subsidiary): Observable<any> {
+  update(id: string, employee: Subsidiary): Observable<any> {
     return this.httpClient.put(`${environment.apiUrl2}/subsidiarias/${id}`, JSON.stringify(employee), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
-  delete(id: number) {
+  delete(id: string) {
     return this.httpClient.delete(`${environment.apiUrl2}/subsidiarias/${id}`, this.httpOptions)
       .pipe(
         catchError(this.errorHandler)

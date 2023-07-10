@@ -1,6 +1,6 @@
 <div class="p-4">
     <div class="container">
-        <h1>Users</h1>
+        <h1>Usuario</h1>
         <a routerLink="add" class="btn btn-sm btn-success mb-2">Crear usuario</a>
         <table class="table table-striped">
             <thead>
@@ -16,7 +16,7 @@
                         <!--<a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary me-1">Edit</a>-->
                         <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger" style="width: 58px" [disabled]="isDeleting">
                             <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
-                            <span *ngIf="!isDeleting">Delete</span>
+                            <span *ngIf="!isDeleting">Borrar</span>
                         </button>
                    
                     </td>

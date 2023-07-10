@@ -51,8 +51,8 @@ export class AddComponent implements OnInit {
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/account/login'], { queryParams: { registered: true }});
+                    //this.alertService.success('Registration successful', true);
+                    this.router.navigate(['/users'], { queryParams: { registered: true }});
                 },
                 error: error => {
                     this.alertService.error(error);

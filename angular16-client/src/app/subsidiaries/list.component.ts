@@ -24,7 +24,7 @@ export class ListComponent {
 
   deleteEmployee(id: string) {
     this.isDeleting = true;
-    this.subsidiaryService.delete(parseInt(id))
+    this.subsidiaryService.delete(id)
       .pipe(first())
       .subscribe(() => {
         this.subsidiaries = { subsidiarias: this.subsidiaries['subsidiarias'].filter(x => x.id !== id) };

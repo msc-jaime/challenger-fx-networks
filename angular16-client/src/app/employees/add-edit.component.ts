@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { NgIf, NgClass } from '@angular/common';
+import { NgIf, NgClass, NgFor } from '@angular/common';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { EmployeeService, AlertService } from '@app/_services';
+import { EmployeeService, AlertService, SubsidiaryService } from '@app/_services';
+import { Subsidiaries } from '@app/_models';
 
 @Component({
   selector: 'app-add-edit',
   templateUrl: './add-edit.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, NgIf, RouterLink]
+  imports: [ReactiveFormsModule, NgClass, NgIf, NgFor, RouterLink]
 })
 export class AddEditComponent implements OnInit {
   
@@ -21,11 +22,14 @@ export class AddEditComponent implements OnInit {
   submitting = false;
   submitted = false;
 
+  subsidiaries!: Subsidiaries;
+
   constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
       private router: Router,
       private employeeService: EmployeeService,
+      private subsidiaryService: SubsidiaryService,
       private alertService: AlertService
   ) { }
 
@@ -39,13 +43,18 @@ export class AddEditComponent implements OnInit {
           fechaContratacion: ['', Validators.required],
           puesto: ['', Validators.required],
           oficina: ['', Validators.required],
-          
+          subsidiariaId: ['', Validators.required]
       });
 
-      this.title = 'Crear Usuario';
+      this.subsidiaryService.getAll()
+        .pipe(first())
+        .subscribe(subsidiaries => this.subsidiaries = subsidiaries);
+
+      this.title = 'Crear Empleado';
       if (this.id) {
           // edit mode
-          this.title = 'Editar Usuario';
+          console.log(this.id);
+          this.title = 'Editar Empleado';
           this.loading = true;
           this.employeeService.find(this.id)
               .pipe(first())
@@ -60,6 +69,8 @@ export class AddEditComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
+      console.log(this.form.value);
+
       this.submitted = true;
 
       // reset alerts on submit
@@ -76,8 +87,8 @@ export class AddEditComponent implements OnInit {
           .pipe(first())
           .subscribe({
               next: () => {
-                  this.alertService.success('User saved', true);
-                  this.router.navigateByUrl('/users');
+                  this.alertService.success('Employees saved', true);
+                  this.router.navigateByUrl('/employees');
               },
               error: error => {
                   this.alertService.error(error);

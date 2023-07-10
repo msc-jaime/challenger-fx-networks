@@ -22,10 +22,10 @@
                     <td>{{employee.oficina}}</td>
                     <td style="white-space: nowrap">
  
-                        <a routerLink="edit/{{employee.id}}" class="btn btn-sm btn-primary me-1">Edit</a>
+                        <a routerLink="edit/{{employee.id}}" class="btn btn-sm btn-primary me-1">Editar</a>
                         <button (click)="deleteEmployee(employee.id)" class="btn btn-sm btn-danger" style="width: 58px" [disabled]="isDeleting">
                             <span *ngIf="isDeleting" class="spinner-border spinner-border-sm"></span>
-                            <span *ngIf="!isDeleting">Delete</span>
+                            <span *ngIf="!isDeleting">Borrar</span>
                         </button>
                     </td>
                 </tr>

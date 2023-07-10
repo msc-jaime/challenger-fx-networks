@@ -1,1 +1,46 @@
-<p>add-edit works!</p>
+<div class="p-4">
+    <div class="container">
+        <h1>{{title}}</h1>
+        <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label">Razón Social</label>
+                    <input type="text" formControlName="razonSocial" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.razonSocial.errors }" />
+                    <div *ngIf="submitted && f.razonSocial.errors" class="invalid-feedback">
+                        <div *ngIf="f.razonSocial.errors.required">Razón Social is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label">Telefono</label>
+                    <input type="text" formControlName="telefono" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }" />
+                    <div *ngIf="submitted && f.telefono.errors" class="invalid-feedback">
+                        <div *ngIf="f.telefono.errors.required">Telefono is required</div>
+                    </div>
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label">Email</label>
+                    <input type="email" formControlName="email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Fecha de Contratación is required</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="">
+                <button [disabled]="submitting" class="btn btn-primary">
+                    <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+                    Guardar
+                </button>
+                <a routerLink="/subsidiaries" class="btn btn-link">Cancelar</a>
+            </div>
+        </form>
+        <div *ngIf="loading" class="text-center m-5">
+            <span class="spinner-border spinner-border-lg align-center"></span>
+        </div>
+    </div>
+</div>
