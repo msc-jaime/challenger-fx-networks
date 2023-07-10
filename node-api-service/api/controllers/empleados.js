@@ -36,7 +36,6 @@ exports.createEmpleado = (req, res, next) => {
     subsidiariaId: subsidiariaId
   })
     .then(result => {
-      console.log('Created Empleado');
       res.status(201).json({
         message: 'Empleado created successfully!',
         empleados: result

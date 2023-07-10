@@ -3,15 +3,15 @@ const dotenv = require("dotenv");
 dotenv.config(); 
 
 module.exports = (req, res, next) => {
-  const token = req.headers.authorization;
-  if (!token) {
+  if (!req.headers.authorization) {
     res.status(401).json({
-        status: 'fail',
-        message: 'Unauthorized!',
-      });
+      status: 'fail',
+      message: 'Unauthorized!',
+    });
+    return ;
   }
-  console.log(token);
-  console.log(process.env.JWT_SECRET);
+  
+  const token = req.headers.authorization;
 
   try {
     const user = jwt.verify(token, process.env.JWT_SECRET);

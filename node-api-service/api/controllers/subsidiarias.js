@@ -33,7 +33,6 @@ exports.createSubsidiaria = (req, res, next) => {
     email: email
   })
     .then(result => {
-      console.log('Created Subsidiaria');
       res.status(201).json({
         message: 'Subsidiaria created successfully!',
         subsidiaria: result

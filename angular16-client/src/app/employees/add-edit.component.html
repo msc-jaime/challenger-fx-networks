@@ -1,0 +1,65 @@
+<div class="p-4">
+    <div class="container">
+        <h1>{{title}}</h1>
+        <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <th style="width: 30%">Nombre</th>
+                    <th style="width: 30%">Documento de indentidad</th>
+                    <th style="width: 30%">Fecha de Contratación</th>
+                    <th style="width: 30%">Puesto</th>
+                    <th style="width: 30%">Oficina</th>
+
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" formControlName="nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+                    <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                        <div *ngIf="f.nombre.errors.required">Nombre is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label">Documento de indentidad</label>
+                    <input type="text" formControlName="cedula" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cedula.errors }" />
+                    <div *ngIf="submitted && f.cedula.errors" class="invalid-feedback">
+                        <div *ngIf="f.cedula.errors.required">Documento de indentidad is required</div>
+                    </div>
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label">Fecha de Contratación</label>
+                    <input type="date" formControlName="fechaContratacion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fechaContratacion.errors }" />
+                    <div *ngIf="submitted && f.fechaContratacion.errors" class="invalid-feedback">
+                        <div *ngIf="f.fechaContratacion.errors.required">Fecha de Contratación is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label">Puesto</label>
+                    <input type="text" formControlName="puesto" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.puesto.errors }" />
+                    <div *ngIf="submitted && f.puesto.errors" class="invalid-feedback">
+                        <div *ngIf="f.puesto.errors.required">Puesto is required</div>
+                    </div>
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label">Oficina</label>
+                    <input type="text" formControlName="oficina" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.oficina.errors }" />
+                    <div *ngIf="submitted && f.oficina.errors" class="invalid-feedback">
+                        <div *ngIf="f.oficina.errors.required">Oficina is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <button [disabled]="submitting" class="btn btn-primary">
+                    <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+                    Guardar
+                </button>
+                <a routerLink="/users" class="btn btn-link">Cancelar</a>
+            </div>
+        </form>
+        <div *ngIf="loading" class="text-center m-5">
+            <span class="spinner-border spinner-border-lg align-center"></span>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const bodyparser = require('body-parser');
 const sequelize = require('./util/database');
 
@@ -7,6 +8,8 @@ const app = express();
 // Middleware
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
+
+app.use(cors())
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -22,6 +25,7 @@ app.get('/', (req, res, next) => {
 
 // CRUD routes
 app.use('/auths', require('./routes/auths'));
+//app.use('/users', require('./routes/users'));
 app.use('/subsidiarias', require('./routes/subsidiarias'));
 app.use('/empleados', require('./routes/empleados'));
 

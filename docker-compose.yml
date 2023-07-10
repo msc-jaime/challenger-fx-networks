@@ -1,14 +1,25 @@
 version: "3.9"
 
 services:
+  angular16_client:
+    container_name: angular16_client
+    build:  
+      context: ./angular16-client
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - node_api_service
+    networks:
+      - app-challenger-network
+
   node_api_service:
     container_name: node_api_service
     build:  
       context: ./node-api-service
       dockerfile: ./Dockerfile
-    image: francescoxx/node_live_app
     ports:
-      - "8080:3000"
+      - "3001:3000"
     environment:
       - PG_DB=node_live_pg_db
       - PG_USER=fxnetworks
@@ -16,6 +27,8 @@ services:
       - PG_HOST=node_pg_db
     depends_on:
       - node_pg_db
+    networks:
+      - app-challenger-network
 
   node_pg_db:
     container_name: node_pg_db
@@ -28,6 +41,12 @@ services:
       - POSTGRES_PASSWORD=12345
     volumes:
       - node_pg_db_data:/var/lib/postgresql/data
+    networks:
+      - app-challenger-network
 
 volumes:
   node_pg_db_data: {}
+
+networks:
+  app-challenger-network:
+    driver: bridge
