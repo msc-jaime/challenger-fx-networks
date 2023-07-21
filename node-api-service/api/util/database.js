@@ -13,5 +13,4 @@ const sequelize = new Sequelize(
     logging: process.env.NODE_ENV === 'production' ? true : false,
   }
 );
-
 module.exports = sequelize;
